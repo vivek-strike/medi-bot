@@ -1,0 +1,74 @@
+{% extends 'main/Admin.html' %}
+
+{% block content %}
+<style>
+  .contents{
+    width:80%;
+    padding: 20px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+  }
+  .contents input, select{
+    width:80%;
+    padding: 6px;
+    border: .5px solid black;
+    outline: none;
+  }
+</style>
+
+<h1>Add Doctor
+  {% for message in messages %}
+  <h4 style="color: green;"> {{message}} </h4>
+  {% endfor %}
+</h1>
+
+<div class="container mt-4">
+  <div class="contents">
+    <form class="row" method="POST" action="{% url 'add_doctor' %}">
+      {% csrf_token %}
+
+      <div class="col-md-10">
+        <div class="form-group">
+          {% for field in form %}
+
+          {{field.label}}: <br>
+          {{field}} <br><br>
+
+          {% endfor %}
+
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn-lg btn-block btn btn-danger mb-5">
+            Add Doctor
+          </button>
+        </div>
+
+    </form>
+  </div>
+</div>
+<div class="container">
+<h3>Doctor List</h3>
+        <table class="table">
+            <tr>
+                <th>Doctor Name</th>
+                <th>Hospital Name</th>
+                <!-- <th>Speciality</th> -->
+                <th>Delete</th>
+            </tr>
+            {% for i in doctor %}
+            <tr>
+                <td>{{i.Doctor_name}}</td>
+                <td>{{i.hospital}}</td>
+                <!-- <td>{{i..Doctor_spacial}}</td> -->
+                <td><a href="{%url 'deletedoctor' i.id %}" onclick="return confirm('Are you sure you want to delete ?')" class="btn btn-outline-danger">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+      </div>
+        <br><br><br>
+</section>
+
+{% endblock %}

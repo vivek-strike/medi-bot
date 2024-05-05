@@ -1,0 +1,63 @@
+{% extends 'Home.html'%}
+
+{% block content %}
+<style>
+  .content {
+    width: 60%;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 10px;
+    color: white !important;
+    margin: auto;
+
+  }
+
+  .content input {
+    padding: 6px;
+    width: 200px;
+    border: .5px solid gray;
+    border-radius: 5px;
+  }
+</style>
+
+<div class="background-image">
+  <div class="background-content">
+    <div class="container mt-5">
+      <div class="content">
+        <h3 class="text-light">Registration</h3>
+        <form method="POST" action="{% url 'registration' %}">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+
+                {% csrf_token %}
+                {% for i in form %}
+                {{i.label}}<br>
+                {{i}}<br><br>
+
+                {% endfor %}
+                {{form.errors}}
+              </div>
+
+              {% for message in messages %}
+              <h6 style="color: red;"> {{message}} </h6>
+              {% endfor %}
+              <h6 style="color:red">{{form.errors}}</h6>
+              <button type="submit" class="btn-lg btn-block btn btn-danger mb-5">
+                Register
+              </button>
+              <span class="text-light">Have an Account Click <a class="btn" href="{% url 'signup' %}">Here</a></span>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

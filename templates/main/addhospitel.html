@@ -1,0 +1,90 @@
+{% extends 'main/Admin.html'%}
+{% block content %}
+<style>
+    .form {
+        width: 70%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 200px !important;
+    }
+</style>
+
+
+<div class="container mt-5 mb-5 p-5">
+
+    <div class="content">
+        {% for message in messages %}
+<h4 style="color: green;"> {{message}} </h4>
+{% endfor %}
+        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Hospital</a><br><br>
+        <h3>Hospital List</h3>
+        <table class="table">
+            <tr>
+                <th>Hospital Name</th>
+                <th>Address</th>
+                <th>Image</th>
+                <th>Service for disease</th>
+                <th>Phone</th>
+                <th>Delete</th>
+            </tr>
+            {% for hospital in hospitals %}
+            <tr>
+                <td>{{hospital.Hosptal_name}}</td>
+                <td>{{hospital.Area}} {{hospital.City}} {{hospital.Country}}</td>
+                <td><img src="{{hospital.Image.url}}"  width="60px"alt=""></td>
+                <td>{{hospital.Symptoms}}</td>
+                <td>{{hospital.phone}}</td>
+                <td><a href="{%url 'deletehospital' hospital.id %}" onclick="return confirm('Are you sure you want to delete ?')" class="btn btn-outline-danger">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Hospital</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" placeholder="Hospital name" name="hname" required><br><br>
+                    <input type="text" class="form-control" placeholder="Area" name="area" required><br><br>Hospital Image
+                    <input type="file" class="form-control" placeholder="Area" name="image" required><br><br>
+                    <input type="text" class="form-control" placeholder="City" name="city" required><br><br>
+                    <input type="text" class="form-control" placeholder="Country" name="country" required><br><br>
+                    <input type="number" class="form-control" placeholder="Phone Number" name="phone" required><br><br>
+                    <label for="">Select Services in This Hospital</label>
+                    <br><br>
+                    <div class="row">
+                        {% for symptom in symptoms %}
+                        <div class="col-md-4">
+                            <input type="checkbox" class="form-check-input" value="{{ symptom }}" name="symptoms[]">
+                            <label>{{ symptom }}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br><br>
+                    <button class="btn btn-primary" type="submit">Add Now</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

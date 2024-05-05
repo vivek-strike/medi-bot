@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .card-conatiner{
+        margin-top: 10px;
+        
+        
+    }
+    .content{
+        width:70%;
+       
+        padding: 20px;
+        box-shadow: 2px 2px 5px black;
+        margin: auto;
+        margin-top: 10px;
+        margin-left: 10px;
+        
+    }
+</style>
+
+<div class="container mt-5 mb-5 p-5">
+    
+    <div class="content">
+        {% for message in messages %}
+            <h4 style="color: green;"> {{message}} </h4>
+        {% endfor %}
+        <h3>Appointment</h3>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+            {{field.label}}: <br>
+            {{field}} <br><br>
+            {% endfor %}
+            <label for="">Doctor</label>
+            <select name="doctor" id="" class="form-control" required>
+                <option value="" selected  disabled>--------------------------</option>
+                {% for d in doctor %}
+                <option value="{{d.id}}">{{d}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-primary">Book Now</button>
+        </form>
+
+
+       
+
+
+    </div>
+</div>
+{% endblock %}

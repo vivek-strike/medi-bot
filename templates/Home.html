@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medi Bot</title>
+    <link rel="stylesheet" href="{%static 'Home.css' %}">
+    <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <header class="header">
+        <img src="{%static 'image/medi3.png' %}" id="logo" alt="">
+
+        <nav class="navbar">
+            <a class="nav-link" href="{%url 'Index' %}">home</a>
+            <a class="nav-link" href="{%url 'Index' %}#about">about</a>
+            <a class="nav-link" href="{%url 'Index' %}#service">services</a>
+            <a class="nav-link" href="{%url 'Index' %}#gallery">gallery</a>
+        {% if request.user.is_authenticated %}
+
+            <a class="nav-link" href="{%url 'consultation_request' %}">Consultation</a>
+            {% endif %}
+            <!-- <a class="nav-link" href="{%url 'Index' %}#">contact</a> -->
+        </nav>
+        {% if request.user.is_authenticated %}
+        <div class="icons">
+            <!-- <div id="menubar" class="fas fa-bars">{{request.user}}</div> -->
+            <a class="nav-link" href="{%url 'signout' %}">({{request.user}}) signout</a>
+        </div>
+        {% else %}
+        <div class="icons">
+            <div id="menubar" class="fas fa-bars"></div>
+            <a class="nav-link" href="{%url 'signup' %}">sign in</a>
+        </div>
+        {% endif %}
+    </header>
+{% block content %}
+    <div class="background-image">
+        <div class="background-content">
+            <h1>provide an exceptional <br> patient experience</h1>
+            <p><b>In a world where complex diseases continue to emerge<br>our platform aims to serve as a lifeline for those seeking medical guidance.</b></p>
+            <a href="#">Read more</a>
+        </div>
+    </div>
+
+   
+    <div class="our-services " id="service">
+        <div class="service-content">
+            <div class="left-service-content">
+                <h1>Our special services</h1>
+                <p>...........................................................................................................
+                    ..........................................................................................................?</p>
+            </div>
+
+            <div class="right-service-content">
+                <div class="right-btn">
+                    <a href="#">See all services</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-services">
+            <div class="inner-services-content">
+                <div class="service-icon">
+                      
+                        
+                    <a href="{%url 'home' %}"><img src="{%static 'image/chatbot.png' %}" alt=""></a>
+
+                    <i class=""></i>
+                </div>
+                <p>.......................................................................................................................................................</p>
+                <h2>Chat with Bot</h2>
+
+            </div>
+
+            <div class="inner-services-content">
+                <div class="service-icon">
+                    <a href="{%url 'home' %}"><img src="{%static 'image/Nearest hospital.png' %}" alt=""></a>
+
+                    <i class=></i>
+                </div>
+                <p>.......................................................................................................................................................</p>
+                
+                <h2>Nearest hospital</h2>
+                
+            </div>
+
+            <div class="inner-services-content">
+                <div class="service-icon">
+                    <a href="{%url 'MedReminder' %}"><img src="{%static 'image/Remainder.png' %}" alt=""></a>
+
+                    <i class=></i>
+                </div>
+                <p>.......................................................................................................................................................</p>
+                
+                <h2>Set Remainder</h2>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="about" id="about">
+        <div class="main-about">
+            <div class="inner-about">
+                <div class="about-content">
+                    <h1>about us</h1>
+                <p><b>Our mission is to bridge the gap between patients and qualified doctors<br>by providing accurate disease predictions and seamless doctor consultations.</b></p>
+                <a href="#">Read more</a>
+                </div>
+                
+            </div>
+            <div class="inner-about">
+                <div class="inner-about-image">
+                    <img src="{%static 'image/chiness.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <h1>Gallery</h1>
+        <div class="main-gallery">
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal1.jpg' %}" alt="">
+            </div>
+
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal2.jpg' %}" alt="">
+            </div>
+
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal3.jpg' %}" alt="">
+            </div>
+
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal4.jpg' %}" alt="">
+            </div>
+
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal5.jpg' %}" alt="">
+            </div>
+
+            <div class="inner-gallery">
+                <img src="{%static 'image/gal6.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="why-choseus">
+    <div class="main-chose">
+        <div class="inner-chose">
+            <img src="{%static 'image/cute.jpg' %}" alt="">
+        </div>
+
+        <div class="inner-chose">
+            <h1>why choose us </h1>
+
+            <div class="inner-chose-content">
+                <div class="main-inner-chose">
+                    <div class="chose-icon">
+                        <i class="fas fa-notes-medical"></i>
+                    </div>
+                    <div class="icon-content">
+                        <p><b >At HealthPredict, our journey began with a single question: How can we empower individuals to take control of their health? Today, we stand at the intersection of cutting-edge technology and compassionate care,</b> </p>
+                    </div>
+                </div>
+
+                <div class="main-inner-chose">
+                    <div class="chose-icon">
+                        <i class="fas fa-hospital-user"></i>
+                        
+                    </div>
+                    <div class="icon-content">
+                        <p>
+                         <b >Your health, your terms: Whether it’s 3 AM or a busy workday, our 24/7 availability ensures that you’re never alone in your health journey,</b> </p>
+                    </div>
+                </div>
+
+                <div class="main-inner-chose">
+                    <div class="chose-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="icon-content">
+                        <p><b>Booking a consultation is as easy as hailing a ride. No waiting rooms, no paperwork—just personalized care,</b> </p>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<div class="footer">
+    <div class="main-footer">
+        <div class="inner-footer">
+            <img src="{%static 'image/.png' %}" alt="">
+        </div>
+
+        <div class="inner-footer">
+            <h2>Disease prediction</h2>
+            <a href="{%url 'home' %}">predict disease</a>
+            <a href="{%url 'home' %}">see availabile hospital</a>
+            <!-- <a href="#">lorem</a> -->
+
+        </div>
+
+        <div class="inner-footer">
+            <h2>Hospitals availabile</h2>
+            <a href="{%url 'home' %}">see availabile hospitals</a>
+            <a href="{%url 'consultation_request' %}">consultation booked</a>
+            <!-- <a href="#">lorem</a> -->
+
+        </div>
+
+        <div class="inner-footer">
+            <h2>Doctor consultation</h2>
+            <a href="{%url 'consultation_request' %}">consultation booked</a>
+            <a href="{%url 'MedReminder' %}">check reminder</a>
+            <!-- <a href="#">lorem</a> -->
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="{%static 'script.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+<!-- provide an exceptional patient experience
+<i class="fas fa-notes-medical"></i>
+<i class="fas fa-hospital-user"></i>
+<i class="fas fa-user-md"></i>
+-->
